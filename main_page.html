@@ -1,0 +1,143 @@
+<!--
+Copyright (C) 2024 Soft Shuffle Ltd <https://www.softshuffle.co.uk>
+The following code implements the Soft Shuffle algorithm developed by Dave Coulthurst.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+It is available at https://github.com/SoftShuffle/soft-shuffler/
+To discuss other licence options for commercial usage contact support@softshuffle.co.uk
+-->
+
+<!--
+Simpler wrapper page for the SoftShuffle class
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <!--Input fields, with defaults (100 cards, 5*2 mat, display 2 * 5 cards to deal at a time)-->
+      <input type="number" id="numCards" name="numCards" min="1" max="10000" value="100" style="width: 50px;">
+      <label for="numCards"><b>Cards</b> - to randomise (1 to 10000).</label>
+      <br>
+      <input type="number" id="numColumns" name="numColumns" min="1" max="10" value="5" style="width: 50px;">
+      <label for="numColumns"><b>Columns</b> - used on mat (1 to 10).</label>
+      <br>
+      <input type="number" id="numRows" name="numRows" min="1" max="10" value="2" style="width: 50px;">
+      <label for="numRows"><b>Rows</b> - used on mat (1 to 10).</label>
+      <br>
+      <input type="number" id="numInstrRows" name="numInstrRows" min="1" max="4" value="2" style="width: 50px;">
+      <label for="numInstrRows"><b>Output Rows</b> - shown (1 to 4).</label>
+      <br>
+      <br>
+      
+      <!-- Button element -->
+    <button id="checkSettingsButton" style="width: 200px; height: 50px; "> Check Settings </button><button id="randomiseButton" style="width: 200px; height: 50px; "> Randomise Deck </button>
+    
+    <br><br>
+
+    <!-- Display area for the deal output -->
+    <div class ="box" id="dealOutputdiv" style="border: 2px groove black; width: 400px; height:400px;">
+      <p id="tlCornerOutput" style="margin: 2%;"></p>
+      <h1 id="dealOutput" style="margin: 2%; text-align: center; text-justify: auto;"></h1>
+    </div>
+   
+    <!-- Button element -->
+    <button id="prevButton" style="width: 150px; height: 100px;"> <- Prev Instructions</button><button id="beginningButton" style="width: 100px; height: 100px;"> < Beginning > </button><button id="nextButton" style="width: 150px; height: 100px;">Next Instructions -> </button> 
+
+    <!--Load the softshuffle class, then the hardcoded html version of the instantiation code-->
+    <script src="soft_shuffle.js"></script>
+
+
+    <script>
+      //main output box
+      let dealOutputNameString = "dealOutput";
+      let tlCornerOutputNameString = "tlCornerOutput";
+
+      let numCardsInputNameString = "numCards";
+      let numColumnsInputNameString = "numColumns";
+      let numRowsInputNameString = "numRows";
+      let numInstrRowsNameString = "numInstrRows";
+          
+
+      //Using this ensure we don't have orphaned text.
+      function htmlBoxOutput(tlCornerOutput, dealOutput){
+          document.getElementById(tlCornerOutputNameString).innerText = "";
+          document.getElementById(dealOutputNameString).innerText = "";
+          document.getElementById(tlCornerOutputNameString).innerText = tlCornerOutput;
+          document.getElementById(dealOutputNameString).innerText = dealOutput;
+      };
+
+      function htmlNumCardsGetter(){
+          return parseInt(document.getElementById(numCardsInputNameString).value);
+      };
+      function htmlNumColumnsGetter(){
+          return parseInt(document.getElementById(numColumnsInputNameString).value);
+      };
+      function htmlNumRowsGetter(){
+          return parseInt(document.getElementById(numRowsInputNameString).value);
+      };
+      function htmlNumInstrRowsGetter(){
+          return parseInt(document.getElementById(numInstrRowsNameString).value);
+      };
+
+      //Create a SoftShuffle object (init code is in the constructor).
+      //Add a listener to link each button to the class method.
+
+      let shuffler = new SoftShuffle(htmlBoxOutput, 
+                                      htmlNumCardsGetter, 1, 10000,
+                                      htmlNumColumnsGetter, 1, 10,
+                                      htmlNumRowsGetter, 1, 10,
+                                      htmlNumInstrRowsGetter, 1, 4);
+
+      document.getElementById("checkSettingsButton").addEventListener("click",  function() {
+          shuffler.checkSettingsButtonClick();
+          }, false);
+      document.getElementById("randomiseButton").addEventListener("click",  function() {
+          shuffler.randomiseButtonClick();
+          }, false);
+      document.getElementById("prevButton").addEventListener("click",  function() {
+          shuffler.previousButtonClick();
+          }, false);
+      document.getElementById("nextButton").addEventListener("click",  function() {
+          shuffler.nextButtonClick();
+          }, false);
+      document.getElementById("beginningButton").addEventListener("click",  function() {
+          shuffler.beginningButtonClick();
+          }, false);
+    </script>
+
+    <p>
+        Instructions<br><br>
+
+        1. Set the number of Cards to match the deck of cards <br>you want to randomise.<br><br>
+        
+        2. Set the number of Columns and Rows to the the number <br>of spaces you want to use on your mat (Columns = width, <br>Rows = height).<br><br>
+        
+        3. Set the number of Output Rows to the number of rows <br>of deal instructions you want on each page.<br><br>
+        
+        4. Click 'Check Settings' to show how many passes <br>(rounds of dealing the full deck) <br>you'll need bases on the Cards, Columns and Rows.<br><br>
+        
+        5. If you're happy with it (the ideal is 2 passes, <br>with an odd number of Columns ), click 'Randomise Deck'. <br>If not, adjust the settings and click 'Check Settings' <br>until you are.<br><br>
+        
+        6. Follow the dealing instructions, using the 'Prev' <br>and 'Next' buttons. The 'Beginning' button takes <br>you back to the beginning of the dealing instructions.<br><br>
+        
+        7. Enjoy your fully randomised deck of cards!
+    </p>
+
+    </body>
+</html>

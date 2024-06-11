@@ -1,0 +1,1608 @@
+<!--
+Copyright (C) 2024 SoftShuffle Ltd <https://www.softshuffle.co.uk>
+The following code implements the Soft Shuffle algorithm developed by Dave Coulthurst.
+It is published under the AGPL3.0 licence, reproduced in full below.
+It is available at https://github.com/SoftShuffle/soft-shuffler/
+To discuss other licence options for commercial usage contact support@softshuffle.co.uk
+
+                    GNU AFFERO GENERAL PUBLIC LICENSE
+                      Version 3, 19 November 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+                            Preamble
+
+  The GNU Affero General Public License is a free, copyleft license for
+software and other kinds of works, specifically designed to ensure
+cooperation with the community in the case of network server software.
+
+  The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+our General Public Licenses are intended to guarantee your freedom to
+share and change all versions of a program--to make sure it remains free
+software for all its users.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+  Developers that use our General Public Licenses protect your rights
+with two steps: (1) assert copyright on the software, and (2) offer
+you this License which gives you legal permission to copy, distribute
+and/or modify the software.
+
+  A secondary benefit of defending all users' freedom is that
+improvements made in alternate versions of the program, if they
+receive widespread use, become available for other developers to
+incorporate.  Many developers of free software are heartened and
+encouraged by the resulting cooperation.  However, in the case of
+software used on network servers, this result may fail to come about.
+The GNU General Public License permits making a modified version and
+letting the public access it on a server without ever releasing its
+source code to the public.
+
+  The GNU Affero General Public License is designed specifically to
+ensure that, in such cases, the modified source code becomes available
+to the community.  It requires the operator of a network server to
+provide the source code of the modified version running there to the
+users of that server.  Therefore, public use of a modified version, on
+a publicly accessible server, gives the public access to the source
+code of the modified version.
+
+  An older license, called the Affero General Public License and
+published by Affero, was designed to accomplish similar goals.  This is
+a different license, not a version of the Affero GPL, but Affero has
+released a new version of the Affero GPL which permits relicensing under
+this license.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+                      TERMS AND CONDITIONS
+
+  0. Definitions.
+
+  "This License" refers to version 3 of the GNU Affero General Public License.
+
+  "Copyright" also means copyright-like laws that apply to other kinds of
+works, such as semiconductor masks.
+
+  "The Program" refers to any copyrightable work licensed under this
+License.  Each licensee is addressed as "you".  "Licensees" and
+"recipients" may be individuals or organizations.
+
+  To "modify" a work means to copy from or adapt all or part of the work
+in a fashion requiring copyright permission, other than the making of an
+exact copy.  The resulting work is called a "modified version" of the
+earlier work or a work "based on" the earlier work.
+
+  A "covered work" means either the unmodified Program or a work based
+on the Program.
+
+  To "propagate" a work means to do anything with it that, without
+permission, would make you directly or secondarily liable for
+infringement under applicable copyright law, except executing it on a
+computer or modifying a private copy.  Propagation includes copying,
+distribution (with or without modification), making available to the
+public, and in some countries other activities as well.
+
+  To "convey" a work means any kind of propagation that enables other
+parties to make or receive copies.  Mere interaction with a user through
+a computer network, with no transfer of a copy, is not conveying.
+
+  An interactive user interface displays "Appropriate Legal Notices"
+to the extent that it includes a convenient and prominently visible
+feature that (1) displays an appropriate copyright notice, and (2)
+tells the user that there is no warranty for the work (except to the
+extent that warranties are provided), that licensees may convey the
+work under this License, and how to view a copy of this License.  If
+the interface presents a list of user commands or options, such as a
+menu, a prominent item in the list meets this criterion.
+
+  1. Source Code.
+
+  The "source code" for a work means the preferred form of the work
+for making modifications to it.  "Object code" means any non-source
+form of a work.
+
+  A "Standard Interface" means an interface that either is an official
+standard defined by a recognized standards body, or, in the case of
+interfaces specified for a particular programming language, one that
+is widely used among developers working in that language.
+
+  The "System Libraries" of an executable work include anything, other
+than the work as a whole, that (a) is included in the normal form of
+packaging a Major Component, but which is not part of that Major
+Component, and (b) serves only to enable use of the work with that
+Major Component, or to implement a Standard Interface for which an
+implementation is available to the public in source code form.  A
+"Major Component", in this context, means a major essential component
+(kernel, window system, and so on) of the specific operating system
+(if any) on which the executable work runs, or a compiler used to
+produce the work, or an object code interpreter used to run it.
+
+  The "Corresponding Source" for a work in object code form means all
+the source code needed to generate, install, and (for an executable
+work) run the object code and to modify the work, including scripts to
+control those activities.  However, it does not include the work's
+System Libraries, or general-purpose tools or generally available free
+programs which are used unmodified in performing those activities but
+which are not part of the work.  For example, Corresponding Source
+includes interface definition files associated with source files for
+the work, and the source code for shared libraries and dynamically
+linked subprograms that the work is specifically designed to require,
+such as by intimate data communication or control flow between those
+subprograms and other parts of the work.
+
+  The Corresponding Source need not include anything that users
+can regenerate automatically from other parts of the Corresponding
+Source.
+
+  The Corresponding Source for a work in source code form is that
+same work.
+
+  2. Basic Permissions.
+
+  All rights granted under this License are granted for the term of
+copyright on the Program, and are irrevocable provided the stated
+conditions are met.  This License explicitly affirms your unlimited
+permission to run the unmodified Program.  The output from running a
+covered work is covered by this License only if the output, given its
+content, constitutes a covered work.  This License acknowledges your
+rights of fair use or other equivalent, as provided by copyright law.
+
+  You may make, run and propagate covered works that you do not
+convey, without conditions so long as your license otherwise remains
+in force.  You may convey covered works to others for the sole purpose
+of having them make modifications exclusively for you, or provide you
+with facilities for running those works, provided that you comply with
+the terms of this License in conveying all material for which you do
+not control copyright.  Those thus making or running the covered works
+for you must do so exclusively on your behalf, under your direction
+and control, on terms that prohibit them from making any copies of
+your copyrighted material outside their relationship with you.
+
+  Conveying under any other circumstances is permitted solely under
+the conditions stated below.  Sublicensing is not allowed; section 10
+makes it unnecessary.
+
+  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
+
+  No covered work shall be deemed part of an effective technological
+measure under any applicable law fulfilling obligations under article
+11 of the WIPO copyright treaty adopted on 20 December 1996, or
+similar laws prohibiting or restricting circumvention of such
+measures.
+
+  When you convey a covered work, you waive any legal power to forbid
+circumvention of technological measures to the extent such circumvention
+is effected by exercising rights under this License with respect to
+the covered work, and you disclaim any intention to limit operation or
+modification of the work as a means of enforcing, against the work's
+users, your or third parties' legal rights to forbid circumvention of
+technological measures.
+
+  4. Conveying Verbatim Copies.
+
+  You may convey verbatim copies of the Program's source code as you
+receive it, in any medium, provided that you conspicuously and
+appropriately publish on each copy an appropriate copyright notice;
+keep intact all notices stating that this License and any
+non-permissive terms added in accord with section 7 apply to the code;
+keep intact all notices of the absence of any warranty; and give all
+recipients a copy of this License along with the Program.
+
+  You may charge any price or no price for each copy that you convey,
+and you may offer support or warranty protection for a fee.
+
+  5. Conveying Modified Source Versions.
+
+  You may convey a work based on the Program, or the modifications to
+produce it from the Program, in the form of source code under the
+terms of section 4, provided that you also meet all of these conditions:
+
+    a) The work must carry prominent notices stating that you modified
+    it, and giving a relevant date.
+
+    b) The work must carry prominent notices stating that it is
+    released under this License and any conditions added under section
+    7.  This requirement modifies the requirement in section 4 to
+    "keep intact all notices".
+
+    c) You must license the entire work, as a whole, under this
+    License to anyone who comes into possession of a copy.  This
+    License will therefore apply, along with any applicable section 7
+    additional terms, to the whole of the work, and all its parts,
+    regardless of how they are packaged.  This License gives no
+    permission to license the work in any other way, but it does not
+    invalidate such permission if you have separately received it.
+
+    d) If the work has interactive user interfaces, each must display
+    Appropriate Legal Notices; however, if the Program has interactive
+    interfaces that do not display Appropriate Legal Notices, your
+    work need not make them do so.
+
+  A compilation of a covered work with other separate and independent
+works, which are not by their nature extensions of the covered work,
+and which are not combined with it such as to form a larger program,
+in or on a volume of a storage or distribution medium, is called an
+"aggregate" if the compilation and its resulting copyright are not
+used to limit the access or legal rights of the compilation's users
+beyond what the individual works permit.  Inclusion of a covered work
+in an aggregate does not cause this License to apply to the other
+parts of the aggregate.
+
+  6. Conveying Non-Source Forms.
+
+  You may convey a covered work in object code form under the terms
+of sections 4 and 5, provided that you also convey the
+machine-readable Corresponding Source under the terms of this License,
+in one of these ways:
+
+    a) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by the
+    Corresponding Source fixed on a durable physical medium
+    customarily used for software interchange.
+
+    b) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by a
+    written offer, valid for at least three years and valid for as
+    long as you offer spare parts or customer support for that product
+    model, to give anyone who possesses the object code either (1) a
+    copy of the Corresponding Source for all the software in the
+    product that is covered by this License, on a durable physical
+    medium customarily used for software interchange, for a price no
+    more than your reasonable cost of physically performing this
+    conveying of source, or (2) access to copy the
+    Corresponding Source from a network server at no charge.
+
+    c) Convey individual copies of the object code with a copy of the
+    written offer to provide the Corresponding Source.  This
+    alternative is allowed only occasionally and noncommercially, and
+    only if you received the object code with such an offer, in accord
+    with subsection 6b.
+
+    d) Convey the object code by offering access from a designated
+    place (gratis or for a charge), and offer equivalent access to the
+    Corresponding Source in the same way through the same place at no
+    further charge.  You need not require recipients to copy the
+    Corresponding Source along with the object code.  If the place to
+    copy the object code is a network server, the Corresponding Source
+    may be on a different server (operated by you or a third party)
+    that supports equivalent copying facilities, provided you maintain
+    clear directions next to the object code saying where to find the
+    Corresponding Source.  Regardless of what server hosts the
+    Corresponding Source, you remain obligated to ensure that it is
+    available for as long as needed to satisfy these requirements.
+
+    e) Convey the object code using peer-to-peer transmission, provided
+    you inform other peers where the object code and Corresponding
+    Source of the work are being offered to the general public at no
+    charge under subsection 6d.
+
+  A separable portion of the object code, whose source code is excluded
+from the Corresponding Source as a System Library, need not be
+included in conveying the object code work.
+
+  A "User Product" is either (1) a "consumer product", which means any
+tangible personal property which is normally used for personal, family,
+or household purposes, or (2) anything designed or sold for incorporation
+into a dwelling.  In determining whether a product is a consumer product,
+doubtful cases shall be resolved in favor of coverage.  For a particular
+product received by a particular user, "normally used" refers to a
+typical or common use of that class of product, regardless of the status
+of the particular user or of the way in which the particular user
+actually uses, or expects or is expected to use, the product.  A product
+is a consumer product regardless of whether the product has substantial
+commercial, industrial or non-consumer uses, unless such uses represent
+the only significant mode of use of the product.
+
+  "Installation Information" for a User Product means any methods,
+procedures, authorization keys, or other information required to install
+and execute modified versions of a covered work in that User Product from
+a modified version of its Corresponding Source.  The information must
+suffice to ensure that the continued functioning of the modified object
+code is in no case prevented or interfered with solely because
+modification has been made.
+
+  If you convey an object code work under this section in, or with, or
+specifically for use in, a User Product, and the conveying occurs as
+part of a transaction in which the right of possession and use of the
+User Product is transferred to the recipient in perpetuity or for a
+fixed term (regardless of how the transaction is characterized), the
+Corresponding Source conveyed under this section must be accompanied
+by the Installation Information.  But this requirement does not apply
+if neither you nor any third party retains the ability to install
+modified object code on the User Product (for example, the work has
+been installed in ROM).
+
+  The requirement to provide Installation Information does not include a
+requirement to continue to provide support service, warranty, or updates
+for a work that has been modified or installed by the recipient, or for
+the User Product in which it has been modified or installed.  Access to a
+network may be denied when the modification itself materially and
+adversely affects the operation of the network or violates the rules and
+protocols for communication across the network.
+
+  Corresponding Source conveyed, and Installation Information provided,
+in accord with this section must be in a format that is publicly
+documented (and with an implementation available to the public in
+source code form), and must require no special password or key for
+unpacking, reading or copying.
+
+  7. Additional Terms.
+
+  "Additional permissions" are terms that supplement the terms of this
+License by making exceptions from one or more of its conditions.
+Additional permissions that are applicable to the entire Program shall
+be treated as though they were included in this License, to the extent
+that they are valid under applicable law.  If additional permissions
+apply only to part of the Program, that part may be used separately
+under those permissions, but the entire Program remains governed by
+this License without regard to the additional permissions.
+
+  When you convey a copy of a covered work, you may at your option
+remove any additional permissions from that copy, or from any part of
+it.  (Additional permissions may be written to require their own
+removal in certain cases when you modify the work.)  You may place
+additional permissions on material, added by you to a covered work,
+for which you have or can give appropriate copyright permission.
+
+  Notwithstanding any other provision of this License, for material you
+add to a covered work, you may (if authorized by the copyright holders of
+that material) supplement the terms of this License with terms:
+
+    a) Disclaiming warranty or limiting liability differently from the
+    terms of sections 15 and 16 of this License; or
+
+    b) Requiring preservation of specified reasonable legal notices or
+    author attributions in that material or in the Appropriate Legal
+    Notices displayed by works containing it; or
+
+    c) Prohibiting misrepresentation of the origin of that material, or
+    requiring that modified versions of such material be marked in
+    reasonable ways as different from the original version; or
+
+    d) Limiting the use for publicity purposes of names of licensors or
+    authors of the material; or
+
+    e) Declining to grant rights under trademark law for use of some
+    trade names, trademarks, or service marks; or
+
+    f) Requiring indemnification of licensors and authors of that
+    material by anyone who conveys the material (or modified versions of
+    it) with contractual assumptions of liability to the recipient, for
+    any liability that these contractual assumptions directly impose on
+    those licensors and authors.
+
+  All other non-permissive additional terms are considered "further
+restrictions" within the meaning of section 10.  If the Program as you
+received it, or any part of it, contains a notice stating that it is
+governed by this License along with a term that is a further
+restriction, you may remove that term.  If a license document contains
+a further restriction but permits relicensing or conveying under this
+License, you may add to a covered work material governed by the terms
+of that license document, provided that the further restriction does
+not survive such relicensing or conveying.
+
+  If you add terms to a covered work in accord with this section, you
+must place, in the relevant source files, a statement of the
+additional terms that apply to those files, or a notice indicating
+where to find the applicable terms.
+
+  Additional terms, permissive or non-permissive, may be stated in the
+form of a separately written license, or stated as exceptions;
+the above requirements apply either way.
+
+  8. Termination.
+
+  You may not propagate or modify a covered work except as expressly
+provided under this License.  Any attempt otherwise to propagate or
+modify it is void, and will automatically terminate your rights under
+this License (including any patent licenses granted under the third
+paragraph of section 11).
+
+  However, if you cease all violation of this License, then your
+license from a particular copyright holder is reinstated (a)
+provisionally, unless and until the copyright holder explicitly and
+finally terminates your license, and (b) permanently, if the copyright
+holder fails to notify you of the violation by some reasonable means
+prior to 60 days after the cessation.
+
+  Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+
+  Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, you do not qualify to receive new licenses for the same
+material under section 10.
+
+  9. Acceptance Not Required for Having Copies.
+
+  You are not required to accept this License in order to receive or
+run a copy of the Program.  Ancillary propagation of a covered work
+occurring solely as a consequence of using peer-to-peer transmission
+to receive a copy likewise does not require acceptance.  However,
+nothing other than this License grants you permission to propagate or
+modify any covered work.  These actions infringe copyright if you do
+not accept this License.  Therefore, by modifying or propagating a
+covered work, you indicate your acceptance of this License to do so.
+
+  10. Automatic Licensing of Downstream Recipients.
+
+  Each time you convey a covered work, the recipient automatically
+receives a license from the original licensors, to run, modify and
+propagate that work, subject to this License.  You are not responsible
+for enforcing compliance by third parties with this License.
+
+  An "entity transaction" is a transaction transferring control of an
+organization, or substantially all assets of one, or subdividing an
+organization, or merging organizations.  If propagation of a covered
+work results from an entity transaction, each party to that
+transaction who receives a copy of the work also receives whatever
+licenses to the work the party's predecessor in interest had or could
+give under the previous paragraph, plus a right to possession of the
+Corresponding Source of the work from the predecessor in interest, if
+the predecessor has it or can get it with reasonable efforts.
+
+  You may not impose any further restrictions on the exercise of the
+rights granted or affirmed under this License.  For example, you may
+not impose a license fee, royalty, or other charge for exercise of
+rights granted under this License, and you may not initiate litigation
+(including a cross-claim or counterclaim in a lawsuit) alleging that
+any patent claim is infringed by making, using, selling, offering for
+sale, or importing the Program or any portion of it.
+
+  11. Patents.
+
+  A "contributor" is a copyright holder who authorizes use under this
+License of the Program or a work on which the Program is based.  The
+work thus licensed is called the contributor's "contributor version".
+
+  A contributor's "essential patent claims" are all patent claims
+owned or controlled by the contributor, whether already acquired or
+hereafter acquired, that would be infringed by some manner, permitted
+by this License, of making, using, or selling its contributor version,
+but do not include claims that would be infringed only as a
+consequence of further modification of the contributor version.  For
+purposes of this definition, "control" includes the right to grant
+patent sublicenses in a manner consistent with the requirements of
+this License.
+
+  Each contributor grants you a non-exclusive, worldwide, royalty-free
+patent license under the contributor's essential patent claims, to
+make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of its contributor version.
+
+  In the following three paragraphs, a "patent license" is any express
+agreement or commitment, however denominated, not to enforce a patent
+(such as an express permission to practice a patent or covenant not to
+sue for patent infringement).  To "grant" such a patent license to a
+party means to make such an agreement or commitment not to enforce a
+patent against the party.
+
+  If you convey a covered work, knowingly relying on a patent license,
+and the Corresponding Source of the work is not available for anyone
+to copy, free of charge and under the terms of this License, through a
+publicly available network server or other readily accessible means,
+then you must either (1) cause the Corresponding Source to be so
+available, or (2) arrange to deprive yourself of the benefit of the
+patent license for this particular work, or (3) arrange, in a manner
+consistent with the requirements of this License, to extend the patent
+license to downstream recipients.  "Knowingly relying" means you have
+actual knowledge that, but for the patent license, your conveying the
+covered work in a country, or your recipient's use of the covered work
+in a country, would infringe one or more identifiable patents in that
+country that you have reason to believe are valid.
+
+  If, pursuant to or in connection with a single transaction or
+arrangement, you convey, or propagate by procuring conveyance of, a
+covered work, and grant a patent license to some of the parties
+receiving the covered work authorizing them to use, propagate, modify
+or convey a specific copy of the covered work, then the patent license
+you grant is automatically extended to all recipients of the covered
+work and works based on it.
+
+  A patent license is "discriminatory" if it does not include within
+the scope of its coverage, prohibits the exercise of, or is
+conditioned on the non-exercise of one or more of the rights that are
+specifically granted under this License.  You may not convey a covered
+work if you are a party to an arrangement with a third party that is
+in the business of distributing software, under which you make payment
+to the third party based on the extent of your activity of conveying
+the work, and under which the third party grants, to any of the
+parties who would receive the covered work from you, a discriminatory
+patent license (a) in connection with copies of the covered work
+conveyed by you (or copies made from those copies), or (b) primarily
+for and in connection with specific products or compilations that
+contain the covered work, unless you entered into that arrangement,
+or that patent license was granted, prior to 28 March 2007.
+
+  Nothing in this License shall be construed as excluding or limiting
+any implied license or other defenses to infringement that may
+otherwise be available to you under applicable patent law.
+
+  12. No Surrender of Others' Freedom.
+
+  If conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot convey a
+covered work so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you may
+not convey it at all.  For example, if you agree to terms that obligate you
+to collect a royalty for further conveying from those to whom you convey
+the Program, the only way you could satisfy both those terms and this
+License would be to refrain entirely from conveying the Program.
+
+  13. Remote Network Interaction; Use with the GNU General Public License.
+
+  Notwithstanding any other provision of this License, if you modify the
+Program, your modified version must prominently offer all users
+interacting with it remotely through a computer network (if your version
+supports such interaction) an opportunity to receive the Corresponding
+Source of your version by providing access to the Corresponding Source
+from a network server at no charge, through some standard or customary
+means of facilitating copying of software.  This Corresponding Source
+shall include the Corresponding Source for any work covered by version 3
+of the GNU General Public License that is incorporated pursuant to the
+following paragraph.
+
+  Notwithstanding any other provision of this License, you have
+permission to link or combine any covered work with a work licensed
+under version 3 of the GNU General Public License into a single
+combined work, and to convey the resulting work.  The terms of this
+License will continue to apply to the part which is the covered work,
+but the work with which it is combined will remain governed by version
+3 of the GNU General Public License.
+
+  14. Revised Versions of this License.
+
+  The Free Software Foundation may publish revised and/or new versions of
+the GNU Affero General Public License from time to time.  Such new versions
+will be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+  Each version is given a distinguishing version number.  If the
+Program specifies that a certain numbered version of the GNU Affero General
+Public License "or any later version" applies to it, you have the
+option of following the terms and conditions either of that numbered
+version or of any later version published by the Free Software
+Foundation.  If the Program does not specify a version number of the
+GNU Affero General Public License, you may choose any version ever published
+by the Free Software Foundation.
+
+  If the Program specifies that a proxy can decide which future
+versions of the GNU Affero General Public License can be used, that proxy's
+public statement of acceptance of a version permanently authorizes you
+to choose that version for the Program.
+
+  Later license versions may give you additional or different
+permissions.  However, no additional obligations are imposed on any
+author or copyright holder as a result of your choosing to follow a
+later version.
+
+  15. Disclaimer of Warranty.
+
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. Limitation of Liability.
+
+  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+  17. Interpretation of Sections 15 and 16.
+
+  If the disclaimer of warranty and limitation of liability provided
+above cannot be given local legal effect according to their terms,
+reviewing courts shall apply local law that most closely approximates
+an absolute waiver of all civil liability in connection with the
+Program, unless a warranty or assumption of liability accompanies a
+copy of the Program in return for a fee.
+
+                    END OF TERMS AND CONDITIONS
+
+            How to Apply These Terms to Your New Programs
+
+  If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+
+  To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+state the exclusion of warranty; and each file should have at least
+the "copyright" line and a pointer to where the full notice is found.
+
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) <year>  <name of author>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Also add information on how to contact you by electronic and paper mail.
+
+  If your software can interact with users remotely through a computer
+network, you should also make sure that it provides a way for users to
+get its source.  For example, if your program is a web application, its
+interface could display a "Source" link that leads users to an archive
+of the code.  There are many ways you could offer source, and different
+solutions will be better for different programs; see section 13 for the
+specific requirements.
+
+  You should also get your employer (if you work as a programmer) or school,
+if any, to sign a "copyright disclaimer" for the program, if necessary.
+For more information on this, and how to apply and follow the GNU AGPL, see
+<https://www.gnu.org/licenses/>.
+
+-->
+
+<!--
+Simpler wrapper page for the SoftShuffle class with the code inline to allow a single page to be saved / used on a device easily.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <!--Input fields, with defaults (100 cards, 5*2 mat, display 2 * 5 cards to deal at a time)-->
+      <input type="number" id="numCards" name="numCards" min="1" max="10000" value="100" style="width: 50px;">
+      <label for="numCards"><b>Cards</b> - to randomise (1 to 10000).</label>
+      <br>
+      <input type="number" id="numColumns" name="numColumns" min="1" max="10" value="5" style="width: 50px;">
+      <label for="numColumns"><b>Columns</b> - used on mat (1 to 10).</label>
+      <br>
+      <input type="number" id="numRows" name="numRows" min="1" max="10" value="2" style="width: 50px;">
+      <label for="numRows"><b>Rows</b> - used on mat (1 to 10).</label>
+      <br>
+      <input type="number" id="numInstrRows" name="numInstrRows" min="1" max="4" value="2" style="width: 50px;">
+      <label for="numInstrRows"><b>Output Rows</b> - shown (1 to 4).</label>
+      <br>
+      <br>
+      
+      <!-- Button element -->
+    <button id="checkSettingsButton" style="width: 200px; height: 50px; "> Check Settings </button><button id="randomiseButton" style="width: 200px; height: 50px; "> Randomise Deck </button>
+    
+    <br><br>
+
+    <!-- Display area for the deal output -->
+    <div class ="box" id="dealOutputdiv" style="border: 2px groove black; width: 400px; height:400px;">
+      <p id="tlCornerOutput" style="margin: 2%;"></p>
+      <h1 id="dealOutput" style="margin: 2%; text-align: center; text-justify: auto;"></h1>
+    </div>
+   
+    <!-- Button element -->
+    <button id="prevButton" style="width: 150px; height: 100px;"> <- Prev Instructions</button><button id="beginningButton" style="width: 100px; height: 100px;"> < Beginning > </button><button id="nextButton" style="width: 150px; height: 100px;">Next Instructions -> </button> 
+    <!--<button id="prevButton" style="width: 200px; height: 100px;"> <- Prev Instruction</button><button id="nextButton" style="width: 200px; height: 100px;">Next Instruction -> </button> -->
+
+    <!--Load the softshuffle class, then the hardcoded html version of the instantiation code-->
+    <script>
+
+      // Explanation
+      // * Deck/pile[0] is the BOTTOM of the deck/pile - to a large extent its an arbitrary choice, as some operations are simpler this way round, 
+      //   but some would be easier if [0] was the top of the deck. It is the primary design decision and the main thing you need to internalise to understand the code.
+      // * Given Deck[0]-is-bottom, dealing from a deck is a reverse traverse (from n->0, not 0->n), BUT, the cards on the piles being dealt to will be built up (0->n).
+      // * The algorithm is combining 2 stages - 1. Creating a randomistion for the deck, and 2. Dealing the original deck m times into the randomised postions.
+      //
+      // 1. Creating a randomistion for the deck.
+      // * We represent our original deck and the randomised deck using a single array thusly:
+      //    * The POSITION in the array (ie 0 for initialDeck[0]) represents the card in its original position. 
+      //    * The VALUE at that position (ie the integer value stored at initialDeck[0]) is the position that card needs to end up in.
+      // * To create this representation (and this is where randomisation actually happens - the rest is just dealing) we use one of the vations of Fisher-Yates from Knuth:
+      //     * We start with an array a[] of size n with values 0,1,2,3,...,n-1 stored at positions a[0],a[1],a[2],a[3],a[...],a[n-1].
+      //     * For i from 0 to n-2, j = random integer picked from i <= j < n, a[i] is swapped with a[j].
+      //     * See https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for more explanation.
+      //
+      // 2. Dealing the original deck m times into the randomised postions.
+      // * We work with key variables:
+      //    * Number of cards to be randomised (numCards, set by input).
+      //    * Number of piles of cards on the mat (numPiles, set by inputs on what spaces are on the mat).
+      //    * Number of passes of dealing (derived from the above).
+      //       * We choose to handle 1, 2 or 3 - 2 passes is the ideal (for space and time reasons):
+      //          * We can perform randomisation in 1 pass iff the numPiles >= numCards.
+      //          * We can perform randomisation in 2 passes iff the numPiles >= squareRoot(numCards).
+      //          * We can perform randomisation in 3 passes iff the numPiles >= cubeRoot(numbCards).
+      //    * The mat has labels A1,A2,A3,A4,B1,B2,B3,B4 (or more for larger mats), but we deal with arrays, and create a mapping function to 
+      // * For this explanation, consider a 100 card deck with 10 piles for shuffling.
+      //    * How we deal in the passes is based on the quotient or remainder when dividing the position the card needs to end in by the number of piles.
+      //       * Reminder of notation: Dividend / divisor = quotient + remainder.
+      //       * For this example we deliberately use 100 cards / positions and 10 piles as it means the quotient will be 0-9 and the remainder 0-9 when the positions are numbered 0-99.
+      //          * For even more simplicity, in this example consider the quotient as the 'tens' value and the remaninder the 'ones' of the new position we want a card to end up in.
+      //          * So if the position the card should end up in is 75, the dividend is 75, the divisor is 10, the quotient is 7 and remainder is 5.
+      // * Our 100 card / 10 pile combination gives 2 passes.
+      //    * The first pass takes the initial deck, sorts by remainder into 10 piles of 10 cards, and then stacks those piles back up into an intermediate deck.
+      //       * Reminder - initialDeck[99] is the top of the deck (so the first card dealt in the first deal).
+      //       * If we assume initialDeck[99] == 75, we want to deal it to the 5th pile  (75 % 10 = 5).
+      //       * We calculate an array of all of these newPilePositions based off a remainder function, with newPilePositions[0] being for initialDeck[0], and so on.
+      //       * We use the array of arrays newDealPiles[10][10], so initialDeck[99] (which is has the value 75) will be pushed into newDealPile[5], assigning newdealPile[5][0] the value 75. 
+      //       * So newDealPiles[0][0,1,2,3,...,9] could be 60,30,70,...,10, newDealPiles[1][0,1,2,3,...,9] could be 31,81,11,...,41, and so on.
+      //       * We gather these 'forward' - with the mat its putting the pile in A1 on pile in A2, etc, 
+      //         but in code its newDealPiles[9][0-9] pushed first, then newDealPiles[8][0-9] to create the intermediateDeck array - remember the bottom of a deck is position 0 (so newDealPiles[0] should be intermediateDeck[90-99]).
+      //       * So we have an intermediate deck sorted by remainder, that could look something like: 
+      //          * intermediateDeck[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,...,86,87,88,89,90,91,92,93,94,95,96,97,98,99] = 99, 69, 79, 89, 29, 9, 19, 39, 59, 49, 68, 38, 78, 28, ... , 31, 1, 21, 61, 30, 60, 40, 0, 50, 10, 70, 80, 20, 90
+      //    * The second pass takes the intermediate deck, and deals it into the final deck.
+      //       * If we look at the intermediateDeck example above, intermediateDeck[99] = 90, [98] = 20, [97] = 80.
+      //       * This time round we're using the quotient to pick which pile to deal into (so for intermediateDeck[99] = 90, we want to deal into pile 9).
+      //       * Other than using the quotient, creating the piles is the same as the first deal.
+      //       * This leaves us with newDealPiles[0][0,1,2,3,...,9] DEFINITELY being 0,1,2,3,4,...,9, newDealPiles[1][11,12,13] DEFINITELY being 11,12,13,...,19, and so on.
+      //          * This is the crux of the algorithm and what we're aiming for - you deal the intermediate deck in a way that allows you to do the second deal giving ordered piles.
+      //          * Its also the reason you need at least root(numCards) piles to do a two pass algorithm - you cant get that without it.
+      //       * We now just need to collect the piles back up into a finalDeck[] that is fully ordered from 0-99 (remember 0 is the bottom of the deck).
+      //          * To do this we need to take pile 9, put it on pile 8, through to zero.
+      //   * Although we use 100 cards / 10 piles to illustarate, 
+      //
+      //
+      // Other notes 
+      // * For 3 passes, the first pass will deal out the cards into piles that are decks of a size that can then each be dealt in a 2 pass deal.
+      //    * Hence a 4 pass would be possible with the numPiles >= fouthRoot(numCards), 5 pass with fifthRoot(numCards) and so on, it just isn't particularly practical. 
+
+      //Quick and dirty logger functions that can be tweaked later if needed.
+      function sLog(text, obj){
+          console.log(text);
+          console.log(obj);
+          console.log("\n");
+      }
+      function sLog0(text){
+          console.log(text);
+          console.log("\n");
+      }
+
+      //0-deck-bottomed array (so 0 is the BOTTOM of the deck, n-1 is thre TOP)
+      class SoftDeck{
+        deckSize = 0;
+        deck = [];
+        
+        //We almost always create decks from other decks (or subsets), so require input deck. 
+        constructor(newDeckSize, inputDeck, inputDeckOffset){
+          this.deckSize = newDeckSize;
+          this.deck = Array(this.deckSize);
+          for (var i = 0; i < this.deckSize; i++){
+            this.deck[i] = inputDeck[i + inputDeckOffset];
+          }
+        }
+
+        deckSizeGetter(){
+          return this.deckSize;
+        }
+
+        deckGetter(){
+          return this.deck;
+        }
+
+        //print a deck to log, prepended by the label.
+        printDeck(label){
+          sLog(label +  "\ndeckSize is: " + this.deckSize + "\n(Reminder, deck[0] is the bottom of the deck, deck[deckSize - 1] is the top.)", this.deck);
+        }
+
+
+        //Random sampler tester - need to look in console logging for output.
+        //We care about (all axes numCards):
+        //returnRangeArr [maxValueInRange][returnedValue] -> accumulator (shows trends of returned values when the range changes)
+        //positionvalueArr [position][value] -> accumulator  (shows trends of where numbers end up vs where they started)
+        //numRejectionArr [maxValueInRange][11?] -> numRejections accumulator (have 10 be 10+ rejections, which should be vanishingly rare.)
+        //numPositionSwapped [maxValueInRange] -> number of times each position is swapped.
+      randomSampleTester(useRejectionSampling, useCryptoRNG){
+
+        //these are relatively small values, real testing use larger
+        let testNumCards = 10;
+        let outerLoops = 2;
+        let innerLoops = 10000;
+        let multiPassLoops = 1;
+        
+        let returnRangeArr = [];
+        let positionvalueArr = [];
+        let numRejectionArr = [];
+        let numPositionSwapped = [];
+        
+        for(let i = 0; i < testNumCards; i++){
+          returnRangeArr[i] = [];
+          positionvalueArr[i] = [];
+          numRejectionArr[i] = [];
+          numPositionSwapped[i] = 0;
+          for(let j = 0; j < testNumCards; j++){
+            returnRangeArr[i][j] = 0;
+            positionvalueArr[i][j] = 0;
+            for(let k = 0; k < 11; k++){
+                numRejectionArr[i][k] = 0;
+            }
+          }
+        }
+
+        sLog0("RandomSamplingTester ")
+        sLog("returnRangeArr: ", returnRangeArr);
+        sLog("positionvalueArr", positionvalueArr);
+        sLog("numRejectionArr", numRejectionArr);
+        sLog("numPositionSwapped", numPositionSwapped);
+
+      for(let x = 0; x < outerLoops; x++){
+        
+        for(let y = 0; y < innerLoops; y++){
+            let testDeck = [];
+            for(let i = 0; i < testNumCards; i++){
+              testDeck[i] = i;
+            }
+
+            //Try multi-pass shuffling
+            for(let z = 0; z < multiPassLoops; z++){
+
+              //This is essentially randomiseDeck() but with instrumentation
+              for (let i = testNumCards - 1; i > 0; i--) {
+                //Generate j, where i >= j >= 0
+                let j = -1;
+
+                if(useRejectionSampling == true){
+                  //Rejection Sampling with cryptoRNG 
+                  let instrumentation = [];
+                  j = this.rejectionSampleInstrumented(i, instrumentation);
+                  //instrumentation
+                  let numRejections = instrumentation[0];
+                  if(numRejections < 10){
+                    numRejectionArr[i][numRejections]++;
+                  } else {
+                    numRejectionArr[i][10]++;
+                  }
+
+                } else if (useCryptoRNG == true){
+                  //Scaled but using cryptoRNG - probably a tiny bit of rounding bias still.
+                  let randomArray = new Uint16Array(1);
+                  self.crypto.getRandomValues(randomArray);
+                  let zeroToOne = randomArray[0] / 65535;
+                  j = Math.floor(zeroToOne * (Math.floor(i) - Math.ceil(0) + 1) + Math.ceil(0)); 
+          
+                } else {
+                    //Fallback use Math.random - possibly useful for debugging or compatibility.
+                    j = Math.floor(Math.random() * (Math.floor(i) - Math.ceil(0) + 1) + Math.ceil(0)); 
+                }
+
+                if(i != j){
+                  numPositionSwapped[i]++;
+                  numPositionSwapped[j]++;
+                }
+
+                returnRangeArr[i][j]++;
+
+                //Swap
+                [testDeck[i], testDeck[j]] = [testDeck[j], testDeck[i]];
+                
+              }
+
+            }
+
+            for(let i = 0; i < testNumCards; i++){
+              positionvalueArr[i][testDeck[i]]++;
+            }
+
+          }
+          sLog0("RandomSamplingTester loop " + x + " of " + outerLoops );
+          sLog0("RandomSamplingTester innerLoops are " + innerLoops + " of " + testNumCards + " cards ");
+        }
+          sLog0("RandomSamplingTester Results ");
+          sLog("returnRangeArr: ", returnRangeArr);
+          sLog("positionvalueArr", positionvalueArr);
+          sLog("numRejectionArr", numRejectionArr);
+          sLog("numPositionSwapped", numPositionSwapped);
+
+      }
+
+        // Rejection sampling - generate a random number from a range greater than what is desired, if it's above the range we are interested in, reject it and pick again. 
+        // This avoids any biases from wrapping numbers round, division rounding, etc.
+        // We only want to sample from the same number of bits as the minimum number required to encode the largest value we want as a possibility.
+        // getRandomValues will give us a fixed number of bits (Uint8 / 16 / etc), so we mask any bits above this minimum-largest-needed-bit to achieve that.
+        // A future optimisation would be to generate a large array of random numbers and wrap it in a class that can export a stream of only the number of bits needed.
+        // The usual Fisher-Yates implementation uses indexes of 0-i, so we only care about max as the 0 and range are implied.
+        // There's a bit of subtlety to the bit twiddling going on here, and I think the simplest way to make it understandable is to include a small table
+        // of relevant logs, powers, encodings, etc.
+        //
+        //  x
+        //  		0,			1,			2,			3,			4,			5,			6,			7,			  8,			  9,			  10
+        //
+        //  Binary representation of x with unsigned int with LSB on the right (technically this would be a uint4)
+        //      0000,		0001,		0010,		0011,		0100,		0101,		0110,		0111,		  1000,		  1001,		  1010
+        //
+        //  Log2(x) (rounded to 1 decimal place)
+        //      -		  	0, 			1,			1.6,		2, 	  	2.3,		2.6,		2.8,			3,			  3.2,			3.3
+        //
+        //  Minimum number bits needed to encode the value x (assuming unsigned int this is Log2(x + 1) ).
+        //      1,			1,			2,			2,			3,			3,			3,			3,			  4,			  4,			  4		
+        //
+        //  2 ^ x
+        //      1,			2,			4,			8,			16,			32,			64,			128,			256,			512,			1024
+        //
+        //  Max value x bits can encode (assuming unsigned, which starts at 0, this is (2 ^ x) - 1  ).
+        //      -			  1,			3,			7,			15,			31,			63,			127,			255,			511,			1023	
+        //
+        rejectionSample(maxValueInRange){
+          
+          let minNumBitsNeeded = Math.ceil(Math.log2(maxValueInRange + 1));
+          let mask = Math.pow(2, minNumBitsNeeded) - 1;
+
+          while(true){
+            //For now we'll do them individually - masking should give us less than 50/50 rejection   
+            //Uint16 because Uint8 is 0-255, 16 is 0 - 65535.
+            let randomArray = new Uint16Array(1);
+            self.crypto.getRandomValues(randomArray);
+            
+            let masked = randomArray[0] & mask;
+
+            if(masked <= maxValueInRange)
+            {
+              return masked;
+            }
+          }
+        }
+      //Check identical to above except for added instrumentation - lack of function overloading in JS.
+        rejectionSampleInstrumented(maxValueInRange, instrumentation){
+          
+          let minNumBitsNeeded = Math.ceil(Math.log2(maxValueInRange + 1));
+          let mask = Math.pow(2, minNumBitsNeeded) - 1;
+
+          let numRejections = 0; //Instrumentation
+          while(true){
+            //For now we'll do them individually - masking should give us less than 50/50 rejection   
+            //Uint16 because Uint8 is 0-255, 16 is 0 - 65535.
+            let randomArray = new Uint16Array(1);
+            self.crypto.getRandomValues(randomArray);
+            
+            let masked = randomArray[0] & mask;
+
+            if(masked <= maxValueInRange)
+            {
+              instrumentation[0] = numRejections; //Instrumentation
+              return masked;
+            }
+            numRejections++; //Instrumentation
+          }
+        }
+
+
+
+        //Use Fisher-Yates to randomise
+        //Use rejectionSampling and cryptoRNG by default - to turn off needs bool setting in code - there in case of compatability issues down the road.
+        //Use j = Math.floor(zeroToOneRNG * (maxNumFloored - minNumCeiled + 1) + minNumCeiled) to ensure inclusive of 0 & i.
+        randomiseDeck(useCryptoRNG, useRejectionSampling) {
+
+          for (let i = this.deckSize - 1; i > 0; i--) {
+            let j = -1;
+
+            if(useRejectionSampling == true){
+              //Rejection Sampling with cryptoRNG 
+              j = this.rejectionSample(i);
+
+            } else if (useCryptoRNG == true){
+              //Scaled but using cryptoRNG - probably a tiny bit of rounding bias still.
+              let randomArray = new Uint16Array(1);
+              self.crypto.getRandomValues(randomArray);
+              let zeroToOne = randomArray[0] / 65535;
+              j = Math.floor(zeroToOne * (Math.floor(i) - Math.ceil(0) + 1) + Math.ceil(0)); 
+
+            } else {
+              //Fallback use Math.random - possibly useful for debugging or compatibility.
+              j = Math.floor(Math.random() * (Math.floor(i) - Math.ceil(0) + 1) + Math.ceil(0)); 
+            }
+
+            [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+          }
+        }
+
+        applyFuncToDeck(decisionFunc, numPiles){
+          const output = Array(this.deckSize).fill(-1);
+          for (let i = 0; i < this.deckSize; i++){
+            output[i] = decisionFunc(this.deck[i], numPiles);
+          }
+          return output;
+        }
+      }
+
+      // deckOrderedPilesToDealTo is 0-bottomed (so 0 is the instruction for the bottom of the deck to match SoftDecks)
+      // dealOrderedPilesToDealTo is that reversed, so we can iterate through them normally (from [0] forward)) - 
+      // useful for mapping out the instructions to the user.
+      class SoftInstructions{
+        numInstructions = -1;
+        deckOrderedPilesToDealTo = [];
+        dealOrderedPilesToDealTo = [];
+        gatherDealForward = true;
+
+        constructor(numInstructions, deckOrderedPilesToDealTo, gatherDealForward){
+          this.numInstructions = numInstructions;
+          this.gatherDealForward = gatherDealForward;
+          this.deckOrderedPilesToDealTo = Array(this.numInstructions).fill(-1);
+          for( let i = 0; i< this.numInstructions; i++){
+            this.deckOrderedPilesToDealTo[i] = deckOrderedPilesToDealTo[i];
+          }
+          for(let i = this.numInstructions - 1; i >= 0; i--){
+            this.dealOrderedPilesToDealTo.push(this.deckOrderedPilesToDealTo[i]);
+          }
+        }
+
+        printInstructions(label){
+          sLog(label +  "\n numInstructions is: " + this.numInstructions + ", gatherDealForward is: " + this.gatherDealForward + "\nThis is the DECK ordered version (0-bottomed to match the deck)\n", this.deckOrderedPilesToDealTo);
+          sLog(label +  "\n numInstructions is: " + this.numInstructions + ", gatherDealForward is: " + this.gatherDealForward + "\nThis is the DEAL ordered version (reversed to match the order performed physically.)\n", this.dealOrderedPilesToDealTo);
+        }
+
+        dealOrderedPilesGetter(){
+          return this.dealOrderedPilesToDealTo;
+        }
+
+        numInstrGetter(){
+          return this.numInstructions;
+        }
+
+        gatherDealForwardGetter(){
+          return this.gatherDealForward;
+        }
+
+        //deckOrderedPilesToDealTo designed to map directly
+        applyInstrToDeck(inputDeck, numPiles){
+          const deckSize = inputDeck.deckSizeGetter();
+          const inputDeckArray = inputDeck.deckGetter();
+          const outputDeckArray = [];
+          const pileArray = [];
+          for (let i = 0; i < numPiles; i++){
+            pileArray[i] = [];
+          } 
+
+
+          //Deal from the top of the deck onto piles (remember decks are 0-bottomed, so are piles.)
+          for(let i = deckSize - 1; i >= 0; i--){
+            pileArray[this.deckOrderedPilesToDealTo[i]].push(inputDeckArray[i]);
+          }
+          sLog("Applied instructions, dealt to piles (remember we deal from the top of the deck, which is n-1, not 0):", pileArray);
+
+          //$gatherDealForward represents which way we collect the piles. We refer to the final pile (num_piles-1) as n.
+          //$gatherDealForward == true is 'Place pile 0 on pile 1, that pile on pile 2, etc' 
+          //$gatherDealForward == false is 'Place pile n on pile n-1, that pile on the previous, etc'
+          //Because we are push()ing to create the return deck, piling forward means push()ing the last pile first
+          //But within each individual we don't change order so we push() them into the final array to avoid changing the order.
+          if(this.gatherDealForward){
+            for(let i = numPiles - 1; i >= 0; i--){
+              for(let j = 0; j < pileArray[i].length; j++){
+                outputDeckArray.push(pileArray[i][j]);
+              }
+            }
+          } else {
+            for(let i = 0; i < numPiles; i++){
+              for(let j = 0; j < pileArray[i].length; j++){
+                outputDeckArray.push(pileArray[i][j]);
+              }
+            }
+          }
+          sLog("Piles gathered (gatheredForward = " + this.gatherDealForward + "), remember the order of the cards within the pile doesn't change, they are just gathered into a pile.", outputDeckArray);
+
+          return outputDeckArray;
+        }
+
+      }
+
+      // Mat holds the lables of the mat, and is responsible for translating 0-deck-bottomed instructions 
+      // to real labels. Mat is 0-top-left (position 0 of the array is the top left of the virtual representation).
+      // Mat is numbered left to right and top to bottom 
+      // (so in a 2x2 mat [0] is A1, [1] is A2, [2] is B1, [3] is B4 - before any remapping.)
+      class SoftMat{
+
+        matMappings = [];
+
+        numCards = -1;
+        numRows = -1;
+        numColumns = -1;
+        numCardsPerDeal = -1;
+
+        constructor(numCards, numRows, numColumns, numCardsPerDeal){
+          this.numCards = numCards;
+          this.numRows = numRows;
+          this.numColumns = numColumns;
+          this.numCardsPerDeal = numCardsPerDeal;
+          //Find 'A'
+          let asciiAVal = 'A'.charCodeAt();
+          this.matMappings = [];
+          for (let i = 0; i < this.numRows; i++){
+              let currentLetter = String.fromCharCode(asciiAVal+i);
+              for (let j = 1; j <= this.numColumns; j++)
+              {
+                  this.matMappings.push(currentLetter + j);
+              }
+          }
+        }
+
+        printMat(){
+          sLog("Mat mappings (the text labels on the mat expressed as an array):\n", this.matMappings);
+        }
+
+        //The instructions to gather the piles have to explain what order to gather up the cards.
+        createGatherInstructionString(gatherPilesForwards){
+          if(gatherPilesForwards){
+              let returnString = "\nGather the piles from top left: \n\n" + 
+              "Place pile " + this.matMappings[0] + " on " + this.matMappings[1] + ". \n\n"; 
+              if(this.numCards > 2){
+                  returnString = returnString + "Place " + this.matMappings[0] + "+" + this.matMappings[1] + 
+                  " pile on " + this.matMappings[2] + ". \n\nAnd so on.";
+              }
+                  return returnString;
+          } else {
+              let last = this.matMappings.length-1;
+              let returnString = "\nGather the piles from bottom right: \n\n" + 
+              "Place pile " + this.matMappings[last] + " on " + this.matMappings[last-1] + ". \n\n"; 
+              if(this.numCards > 2){
+                  returnString = returnString + "Place " + this.matMappings[last] + "+" + this.matMappings[last-1] + 
+                  " pile on " + this.matMappings[last-2] + ". \n\nAnd so on.";
+              }
+                  return returnString;
+          }
+        }
+
+        splitByNumPerDeal(dealInstructions){
+            const splitInstructions = [];
+            let numDealThisLoop = this.numCardsPerDeal;
+            let numDealFinalLoop = this.numCardsPerDeal;
+        
+            //If we have less than numCardsPerDeal in the final set
+            if( (this.numCards % this.numCardsPerDeal) != 0 ){
+                numDealFinalLoop = this.numCards % this.numCardsPerDeal;
+            }
+        
+            for(let i = 0; i < this.numCards / this.numCardsPerDeal; i ++){
+                let thisSplit = "\n";
+                    
+                if(i >= ( this.numCards / this.numCardsPerDeal - 1 )){
+                    numDealThisLoop = numDealFinalLoop;
+                }
+                for(let j = 0; j < numDealThisLoop; j++){
+                    if( j > 0 ){
+                        if( j % 5 == 0){
+                            thisSplit = thisSplit + "\n\n";
+                        } else {
+                            // The spacing is a regular space and an &emsp 
+                            thisSplit = thisSplit  + "  ";
+                        }
+                    }
+                    thisSplit = thisSplit + dealInstructions[(i*this.numCardsPerDeal)+j];
+                }
+                splitInstructions.push(thisSplit);
+            }
+            return splitInstructions;
+        }
+
+        //Take virtual instructions and combine them with the mat configuration to create output
+        mapInstructionsToMat(inputInstr){
+          let dealOrderedPilesToDealTo = inputInstr.dealOrderedPilesGetter();
+          let numInstr = inputInstr.numInstrGetter();
+          let gatherDealForward = inputInstr.gatherDealForwardGetter();
+          let unchoppedInstr = [];
+
+          for(let i = 0; i < numInstr; i++){
+            unchoppedInstr[i] = this.matMappings[dealOrderedPilesToDealTo[i]];
+          }
+          //sLog("Unchopped mat instructions", unchoppedInstr);
+
+          let choppedInstr = this.splitByNumPerDeal(unchoppedInstr);
+          //sLog("Chopped mat instructions", choppedInstr);
+
+          let outputInstr = choppedInstr;
+          outputInstr.push(this.createGatherInstructionString(gatherDealForward));
+          //sLog("Instructions mapped to mat, split by number of rows of instructions + gather text", outputInstr);
+
+          return outputInstr;
+        }
+
+      }
+
+
+      class SoftShuffle{
+          //class fields
+          numPasses = -1;
+          numInstrPerRow = 5;
+          //This should be more than needed
+          maxPasses = 10;
+
+          //Limits from page
+          numCardsMin = -1;
+          numCardsMax = -1;
+          numRowsMin = -1;
+          numRowsMax = -1;
+          numColumnsMin = -1;
+          numColumnsMax = -1;
+          numInstrRowsMin = -1;
+          numInstrRowsMax = -1;
+
+          //We should always be using these, but if there are compatibility issues we can disable.
+          useRejectionSampling = true;
+          useCryptoRNG = true;
+          
+          deckMatComboMessage = "";
+          mainInstructionOutput = [];
+          mainInstructionOutputPos = 0;
+          
+          boxOutput = function(){};
+          
+          numCardsGetter = function(){};
+          numColumnsGetter = function(){};
+          numRowsGetter = function(){};
+          numInstrRowsGetter = function(){};
+
+          constructor(iBoxOutput, iNumCardsGetter, numCardsMin, numCardsMax, 
+                                  iNumColumnsGetter, numColumnsMin, numColumnsMax, 
+                                  iNumRowsGetter, numRowsMin, numRowsMax, 
+                                  iNumInstrRowsGetter, numInstrRowsMin, numInstrRowsMax){
+              //Set function pointers to the version included for this platform.
+              this.boxOutput = iBoxOutput;
+              this.numCardsGetter = iNumCardsGetter;
+              this.numColumnsGetter = iNumColumnsGetter;
+              this.numRowsGetter = iNumRowsGetter;
+              this.numInstrRowsGetter = iNumInstrRowsGetter;
+
+              //get min/maxs from page.
+              this.numCardsMin = numCardsMin;
+              this.numCardsMax = numCardsMax;
+              this.numColumnsMin = numColumnsMin;
+              this.numColumnsMax = numColumnsMax;
+              this.numRowsMin = numRowsMin;
+              this.numRowsMax = numRowsMax;
+              this.numInstrRowsMin = numInstrRowsMin;
+              this.numInstrRowsMax = numInstrRowsMax;
+
+              //get variable defaults from page.
+              this.getParseInputs();
+
+              //Set initial outputs
+              this.resetOutput();
+          }
+
+          resetOutput(){
+              this.deckMatComboMessage = "";
+              this.mainInstructionOutput = ["Instructions are displayed here."];
+              this.mainInstructionOutputPos = 0;
+          }
+
+          //Used to abstract button clicking functions from the behaviour.
+          checkSettingsButtonClick(){
+            sLog0("Clicked CheckSettings button");
+            this.resetOutput();
+            this.getParseInputs();
+          }
+          randomiseButtonClick(){
+              sLog0("Clicked randomise button");
+              this.performRandomisation();
+          }
+          previousButtonClick(){
+              sLog0("Clicked Prev button");
+              //Check a randomisation has happened succesfully
+              if(this.mainInstructionOutput.length > 1){
+                  if(this.mainInstructionOutputPos - 1 >= 0){
+                      this.mainInstructionOutputPos--;
+                      this.boxOutput(this.mainInstructionOutputPos + ".", this.mainInstructionOutput[this.mainInstructionOutputPos]);
+                  }
+              }    
+          }
+          nextButtonClick(){
+              sLog0("Clicked Next button");
+              //Check a randomisation has happened succesfully
+              if(this.mainInstructionOutput.length > 1){
+                  if(this.mainInstructionOutputPos + 1 < this.mainInstructionOutput.length){
+                      this.mainInstructionOutputPos++;
+                      this.boxOutput(this.mainInstructionOutputPos + ".", this.mainInstructionOutput[this.mainInstructionOutputPos]);
+                  }
+              }    
+          }
+          beginningButtonClick(){
+              sLog0("Clicked Beginning button");
+              //Check a randomisation has happened succesfully
+              if(this.mainInstructionOutput.length > 1){
+                  this.mainInstructionOutputPos = 0;
+                  this.boxOutput(this.mainInstructionOutputPos + ".", this.mainInstructionOutput[this.mainInstructionOutputPos]);
+              }
+          }
+
+          //Get the inputs from the page.
+          //Calculate intermediate values.
+          // Error check
+          getParseInputs(){
+              this.numCards = this.numCardsGetter();
+              this.numColumns = this.numColumnsGetter();
+              this.numRows = this.numRowsGetter();
+              let numInstrRows = this.numInstrRowsGetter();
+              this.numCardsPerDeal = numInstrRows * this.numInstrPerRow;
+              this.numPiles = this.numColumns * this.numRows;
+              this.numPasses = this.findNumPasses(this.numCards, this.numPiles);
+
+              let returnBool = true;
+
+              if (this.numCards < this.numCardsMin || this.numCards > this.numCardsMax
+                || this.numColumns < this.numColumnsMin || this.numColumns > this.numColumnsMax
+                || this.numRows < this.numRowsMin || this.numRows > this.numRowsMax
+                || this.numInstrRows < this.numInstrRowsMin || this.numInstrRows > this.numInstrRowsMax){
+
+                  this.deckMatComboMessage = "";
+                  this.deckMatComboMessage += "Current Settings are outside allowed values.\n\n";
+                  this.deckMatComboMessage += "Adjust the settings above, then click 'Check Settings' to test.\n\n";
+                  returnBool = false;
+                } else if(this.numPasses == -1){
+                  this.deckMatComboMessage = "";
+                  this.deckMatComboMessage += "Too many passes needed (more than " + this.maxPasses + ").\n\n";
+                  this.deckMatComboMessage += "Adjust the settings above, then click 'Check Settings' to test.\n\n";
+                  returnBool = false;
+                } else {
+                //Basically - 1 or 2 passes is Good, 3 is Ok, 4+ Bad.
+                let settingsAssessment = "GOOD";
+                if(this.numPasses > 2){
+                  settingsAssessment = "OK";
+                }
+                if(this.numPasses > 3){
+                  settingsAssessment = "POOR";
+                }
+
+                this.deckMatComboMessage = "";
+                this.deckMatComboMessage += "- Adjust the settings above, then click 'Check Settings' to test (full instructions below/left).\n\n"
+
+                //this.deckMatComboMessage += "(Instructions below/left)\n\n";
+                this.deckMatComboMessage += "- Current Settings: " + settingsAssessment + "\n";
+                this.deckMatComboMessage += "(" + this.numCards + " cards randomised in " + this.numPasses + " deals.)\n";
+                this.deckMatComboMessage += "(Mat spaces used (W*H): [" + this.numColumns + "*" + this.numRows + "].)\n\n";
+
+                this.deckMatComboMessage += "- Click 'Randomise Deck' to use these settings.\n\n";
+                
+                //this.deckMatComboMessage += "Otherwise adjust the settings above, then click 'Check Settings' to test.\n\n"
+
+                this.deckMatComboMessage += "- Info:\n"
+                this.deckMatComboMessage += "* [" + this.numColumns + " * " + this.numRows + "] mat spaces gives a total of " + this.numPiles + " piles.\n";
+                this.deckMatComboMessage += "* " + Math.ceil(Math.sqrt(this.numCards)) + "+ piles needed for 2 pass for " + this.numCards + " cards.\n";
+                this.deckMatComboMessage += "* " + Math.ceil(Math.cbrt(this.numCards)) + "+ piles needed for 3 pass for " + this.numCards + " cards.";
+
+              }
+              sLog(this.deckMatComboMessage);
+              this.boxOutput(this.deckMatComboMessage, "");
+              
+              return returnBool; 
+          }
+
+          //Its useful to be able to speculatively do this as well as in error checking.
+          //We manually check powers rather than testing roots to avoid rounding errors.
+          //We limit to 5 passes - even 3 should do what any user feasibly wants.
+          findNumPasses(numCards, numPiles){
+            let accumulator = numPiles;
+            let i = 1;
+            while(i <= this.maxPasses){
+              if(accumulator >= numCards){
+                return i;
+              } else {
+                i++;
+                accumulator *= numPiles;
+              }
+            }
+            return -1;
+          }
+
+          //Perform a full randomisation.
+          //With 1 pass, deal cards to where they are meant to be, and gather.
+          //With 2 pass, deal cards to the right piles for a final pass, gather, final pass.
+          //Antepenultimate, penultimate, ultimate are the proper terms for thirdToLast, secondToLast and Last, 
+          //but are actually longer to write out and lower readability.
+          performRandomisation() {
+              //Assume user has set inputs by now, but defaults if not.
+              if (this.getParseInputs() == false){
+                return;
+              }
+              sLog0("Parsed inputs, no issues found");
+
+              //Set initial outputs
+              this.resetOutput();
+
+              //Create Mat representation
+              const matMapper = new SoftMat(this.numCards, this.numRows, this.numColumns, this.numCardsPerDeal);
+              matMapper.printMat();
+              
+
+              //We only create a Deck from nothing this one time - this creates ones with the initial positions matching the array indices - ie unshuffled.
+              const initialPositions = [];
+              for (let i = 0; i < this.numCards; i++) {
+                  initialPositions[i] = i;
+              }
+              const initialDeck = new SoftDeck(this.numCards, initialPositions, 0);
+              
+              //Perform randomisation
+              initialDeck.printDeck("Deck pre-randomisation - unshuffled so card positions match their array index");
+              initialDeck.randomiseDeck(this.useCryptoRNG, this.useRejectionSampling);
+              initialDeck.printDeck("Deck post-randomisation - array element show the position we wish that card to end up in.");
+              sLog0("NOTE! All randomisation has happened now, the rest (and vast majority) of the code is how to generate 1,2 or 3 deals to get the cards to their randomised postions.")
+
+
+              //NOTE: I've retained the following commented out code to make it easier to understand what's going on here. 
+              //It also may be useful for compatibility issue.
+              //The functions used to generate the pile each card should be dealt to, expressed as the general case where only the power used in division changes.
+              //'UnityQuotientFunc' is really just a remainder function but expressed fully here to show the general case.
+              // It simplifies to 'function remainderFunc (newPosition, numPiles) { return newPosition % numPiles; };'
+              //Naming is tricky, but for simplicity i've used (for example) 'square' quotient to represent the fact that for 2-pass, the number of cards must be <= square of the number of piles.
+              //function unityQuotientFunc (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, 0)) % numPiles); };
+              //function squareQuotientFunc (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, 1)) % numPiles); };
+              //function cubeQuotientFunc (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, 2)) % numPiles); };
+              //function quadQuotientFunc (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, 3)) % numPiles); };
+              //function quintQuotientFunc (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, 4)) % numPiles); };
+              //let functionArray = [unityQuotientFunc, squareQuotientFunc, cubeQuotientFunc, quadQuotientFunc, quintQuotientFunc];
+              //General case expressed programatically
+              let functionArray = [];
+              for(let i = 0; i < this.numPasses; i++){
+                function quotientFunction (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, i)) % numPiles); };
+                functionArray[i] = quotientFunction;
+              }
+
+              //Gather forwards alternates true / false / true, and starts false if numPasses is odd, true on even.
+              //starts true on even.
+              let gatherForward = false;
+              if (this.numPasses % 2 == 0){
+                gatherForward = true;
+              }
+
+              let currentDeck = initialDeck;
+              let deckArray = [];
+              let instrArray = [];
+              let mappedInstructions = [];
+
+              //perform the required number of passes (realistically only ever likely to be max 4, but lets people explore the algorithm)
+              for(let i = 0; i < this.numPasses; i++){
+                //Create the next set of functions based on the quotient function for this iteration / pass
+                const newInstr = new SoftInstructions(currentDeck.deckSizeGetter(), currentDeck.applyFuncToDeck(functionArray[i], this.numPiles), gatherForward);
+                //newInstr.printInstructions("Pass " + i + " instructions");
+        
+                //apply the instructions to genenerate the new deck that will be generated once dealing has happened.
+                const newDeck = new SoftDeck(currentDeck.deckSizeGetter(), newInstr.applyInstrToDeck(currentDeck, this.numPiles), 0);
+                //newDeck.printDeck("New deck after Pass " + i + " instructions applied to it.");
+
+                //Map the instructions to the mat and generate the Strings needed to output.
+                const newMappedInstr = matMapper.mapInstructionsToMat(newInstr);
+                //sLog("Instructions for Pass " + i + " mapped to mat, split by number of rows of instructions + gather text", newMappedInstr);
+
+                instrArray[i] = newInstr;
+                deckArray[i] = newDeck;
+                mappedInstructions[i] = newMappedInstr;
+                currentDeck = newDeck;
+
+                //flip gatherForward
+                if(gatherForward == true){
+                  gatherForward = false;
+                } else {
+                  gatherForward = true;
+                }
+
+              }
+
+              this.mainInstructionOutput = [];
+              this.mainInstructionOutput.push("\nVirtual randomisation complete.\n\nClick Next for first deal instruction. ");
+
+              //Log the instructions and new decks 
+              for(let i = 0; i < this.numPasses; i++){
+                instrArray[i].printInstructions("Pass " + i + " instructions");
+                deckArray[i].printDeck("New deck after Pass " + i + " instructions applied to it.");
+                sLog("Instructions for Pass " + i + " mapped to mat, split by number of rows of instructions + gather text", mappedInstructions[i]);
+        
+                for(let j = 0; j < mappedInstructions[i].length; j++){
+                  this.mainInstructionOutput.push(mappedInstructions[i][j]);
+                }
+              }
+
+              this.mainInstructionOutput.push("\nDone!\n\nDeck randomised and ready for use. ");
+
+              sLog("Main Instructions\n",this.mainInstructionOutput);
+
+              //This sets to the start of the instructions.
+              this.beginningButtonClick();
+
+              //Just for testing
+              //initialDeck.randomSampleTester(this.useRejectionSampling, this.useCryptoRNG);
+          }
+      }
+
+
+    </script>
+
+
+    <script>
+      //main output box
+      let dealOutputNameString = "dealOutput";
+      let tlCornerOutputNameString = "tlCornerOutput";
+
+      let numCardsInputNameString = "numCards";
+      let numColumnsInputNameString = "numColumns";
+      let numRowsInputNameString = "numRows";
+      let numInstrRowsNameString = "numInstrRows";
+          
+
+      //Using this ensure we don't have orphaned text.
+      function htmlBoxOutput(tlCornerOutput, dealOutput){
+          document.getElementById(tlCornerOutputNameString).innerText = "";
+          document.getElementById(dealOutputNameString).innerText = "";
+          document.getElementById(tlCornerOutputNameString).innerText = tlCornerOutput;
+          document.getElementById(dealOutputNameString).innerText = dealOutput;
+      };
+
+      function htmlNumCardsGetter(){
+          return parseInt(document.getElementById(numCardsInputNameString).value);
+      };
+      function htmlNumColumnsGetter(){
+          return parseInt(document.getElementById(numColumnsInputNameString).value);
+      };
+      function htmlNumRowsGetter(){
+          return parseInt(document.getElementById(numRowsInputNameString).value);
+      };
+      function htmlNumInstrRowsGetter(){
+          return parseInt(document.getElementById(numInstrRowsNameString).value);
+      };
+
+      //Create a SoftShuffle object (init code is in the constructor).
+      //Add a listener to link each button to the class method.
+
+      let shuffler = new SoftShuffle(htmlBoxOutput, 
+                                      htmlNumCardsGetter, 1, 10000,
+                                      htmlNumColumnsGetter, 1, 10,
+                                      htmlNumRowsGetter, 1, 10,
+                                      htmlNumInstrRowsGetter, 1, 4);
+
+      document.getElementById("checkSettingsButton").addEventListener("click",  function() {
+          shuffler.checkSettingsButtonClick();
+          }, false);
+      document.getElementById("randomiseButton").addEventListener("click",  function() {
+          shuffler.randomiseButtonClick();
+          }, false);
+      document.getElementById("prevButton").addEventListener("click",  function() {
+          shuffler.previousButtonClick();
+          }, false);
+      document.getElementById("nextButton").addEventListener("click",  function() {
+          shuffler.nextButtonClick();
+          }, false);
+      document.getElementById("beginningButton").addEventListener("click",  function() {
+          shuffler.beginningButtonClick();
+          }, false);
+    </script>
+
+<p>
+  Instructions<br><br>
+
+  1. Set the number of Cards to match the deck of cards <br>you want to randomise.<br><br>
+  
+  2. Set the number of Columns and Rows to the the number <br>of spaces you want to use on your mat (Columns = width, <br>Rows = height).<br><br>
+  
+  3. Set the number of Output Rows to the number of rows <br>of deal instructions you want on each page.<br><br>
+  
+  4. Click 'Check Settings' to show how many passes <br>(rounds of dealing the full deck) <br>you'll need bases on the Cards, Columns and Rows.<br><br>
+  
+  5. If you're happy with it (the ideal is 2 passes, <br>with an odd number of Columns ), click 'Randomise Deck'. <br>If not, adjust the settings and click 'Check Settings' <br>until you are.<br><br>
+  
+  6. Follow the dealing instructions, using the 'Prev' <br>and 'Next' buttons. The 'Beginning' button takes <br>you back to the beginning of the dealing instructions.<br><br>
+  
+  7. Enjoy your fully randomised deck of cards!
+</p>
+
+    </body>
+</html>
