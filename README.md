@@ -1,6 +1,6 @@
 # Soft Shuffle soft-shuffler - a Digitally Directed Deck Randomiser
 
-An implementation of the soft shuffle method of fully randomising a deck of cards puerely by dealing to a
+An implementation of the soft shuffle method of fully randomising a deck of cards purely by dealing to a
 set of digitally generated instructions. Encapsulated as a single html & javascript webpage to make it easy 
 to download to a device for offline use.
 
@@ -17,7 +17,7 @@ A short summary of what it does:
     - The `crypto.getRandomValues()` library function is used along with rejection sampling to give unbiased randomisation (we specifically use the crypt library as it mixes entropy from the device in to overcome the issues with PRNGs).
 - A set of instructions is generated to allow the specific variation of pile-shuffling (pile-deal is a more accurate term) to be performed by the user.
     - The general case of the algorithm is used that can do 1-n passes (each pass is a deal of a deck to piles then collect back into a deck).
-- These deal instructions are separated out into a 2D array representing the blocks/pages they'll be preseneted to the user in, based on the config data collected at the beginning.
+- These deal instructions are separated out into a 2D array representing the blocks/pages they'll be presented to the user in, based on the config data collected at the beginning.
 
 
 # Requirements
