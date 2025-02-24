@@ -761,8 +761,7 @@ class SoftShuffle{
         //General case expressed programatically
         let functionArray = [];
         for(let i = 0; i < this.numPasses; i++){
-          function quotientFunction (newPosition, numPiles) { return (Math.trunc(newPosition / Math.pow(numPiles, i)) % numPiles); };
-          functionArray[i] = quotientFunction;
+          functionArray[i] = (newPosition, numPiles) => (Math.trunc(newPosition / Math.pow(numPiles, i)) % numPiles);
         }
 
         //Gather forwards alternates true / false / true, and starts false if numPasses is odd, true on even.
